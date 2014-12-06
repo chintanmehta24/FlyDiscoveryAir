@@ -4,7 +4,63 @@
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
+@import 'font-awesome';
 // Custom code goes here..
 
 // Examples of using the icon mixin:
 // @include icon('user');
+@include icon-font('FontAwesome', inline-font-files('fontawesome-webfont.woff', woff, 'fontawesome-webfont.ttf', truetype));
+
+.home-view-cls{
+  background-color: transparent;
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  .homeBtnGroup {
+    .x-form-fieldset-inner{
+      background-color: transparent;
+      border-width: 0px;
+      @include border-radius(0);
+    }
+    .airlineBottomLogoCls{
+      background-color: white;
+      img{
+        width: 25%;
+        margin: auto;
+      }
+    }
+    .airlineLogoCls{
+      &:before{
+        content: " ";
+        position: absolute;
+        top: 50%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        z-index: -1;
+      }
+    }
+    .airlineMenuBtn{
+      padding: 0;
+      height: auto;
+      background-color: white;
+      @include border-radius(0);
+      .x-button-icon{
+        background-color: #f4efea;
+        height: auto;
+        width: 3em;
+        font-size: 1.25em;
+        text-align: center;
+        padding: 0.5em 0;
+        &:before{
+          line-height: 1.25;
+        }
+      }
+      .x-button-label{
+        text-align: left;
+        margin-left: 1em;
+      }
+    }
+  }
+}
