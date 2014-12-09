@@ -5,15 +5,13 @@ Ext.define('FlyDiscoveryAir.view.Home', {
     	layout: {
     		type: "vbox",
     		align: "center",
-    		pack: "center"
+    		// pack: "center"
 		},
 		scrollable: "vertical",
 		cls: "home-view-cls",
     	items: [{
     		xtype: "fieldset",
     		cls: "homeBtnGroup",
-    		maxWidth: 480,
-    		width: "100%",
     		items:[{
 	    		xtype: "image",
 	    		cls: "airlineLogoCls",
@@ -23,7 +21,8 @@ Ext.define('FlyDiscoveryAir.view.Home', {
 	    		src: "resources/images/logo.png"
 	    	}, {
 	    		xtype: "button",
-	    		cls: "airlineMenuBtn",
+	    		cls: "airlineMenuBtn top-shadow",
+	    		action: "bookFlight",
 	    		text: "Book Flight",
 	    		iconAlign: "left",
 	    		iconCls: "icon-awesome  icon-plane",
@@ -44,7 +43,7 @@ Ext.define('FlyDiscoveryAir.view.Home', {
 	    		ui: "plain"
 	    	}, {
 	    		xtype: "button",
-	    		cls: "airlineMenuBtn",
+	    		cls: "airlineMenuBtn bottom-shadow",
 	    		text: "Boarding Pass",
 	    		iconAlign: "left",
 	    		iconCls: "icon-awesome  icon-ticket",

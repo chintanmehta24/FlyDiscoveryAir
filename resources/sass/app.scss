@@ -1,6 +1,7 @@
 // The following two lines import the default Sencha Touch theme. If you are building
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
+$page-bg-color: transparent;
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
@@ -9,17 +10,44 @@
 
 // Examples of using the icon mixin:
 // @include icon('user');
+
+@include icon-font('ITCErasStd', inline-font-files('ITCErasStd-Book.woff', woff, 'ITCErasStd-Book.ttf', truetype));
 @include icon-font('FontAwesome', inline-font-files('fontawesome-webfont.woff', woff, 'fontawesome-webfont.ttf', truetype));
 
+@include sencha-toolbar-ui('transparent', rgba(0,0,0,0));
+
+.x-toolbar-transparent {
+  @media screen and (max-width: 480px) {
+    @include background-gradient(#e3d7cb, bevel); 
+    .x-title, .x-button .x-button-icon {
+      color: #91602e;
+      @include text-shadow(none);
+    }   
+  }  
+}
+
+.main-nav {
+  background-color: white;
+  @media screen and (min-width: 481px) {
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  .main-nav-bar {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+  }
+}
+
 .home-view-cls{
-  background-color: transparent;
-  background-image: url("../images/bg.jpg");
-  background-size: cover;
-  background-position: center;
   .homeBtnGroup {
+    margin: 0 0 3em;
+    max-width: 480px;
+    width: 100%;
     .x-form-fieldset-inner{
-      background-color: transparent;
       border-width: 0px;
+      background-color: transparent;
       @include border-radius(0);
     }
     .airlineBottomLogoCls{
@@ -27,9 +55,11 @@
       img{
         width: 25%;
         margin: auto;
+        padding: 0.5em 0;
       }
     }
     .airlineLogoCls{
+      margin-top: 2em;
       &:before{
         content: " ";
         position: absolute;
@@ -38,14 +68,32 @@
         left: 0;
         right: 0;
         background-color: white;
-        z-index: -1;
+        z-index: -2;
+      }
+      @media screen and (max-width: 480px) {
+        margin-top: 4em;
+        &:after{
+          content: " ";
+          position: absolute;
+          top: -4em;
+          left: 0;
+          right: 0;
+          bottom: 50%;
+          z-index: -1;
+          background-image: url("../images/bg-mobile.jpg");
+          background-color: transparent;
+          background-size: cover;
+          background-position: center;
+        }
       }
     }
     .airlineMenuBtn{
+      color: #91602e;
       padding: 0;
       height: auto;
       background-color: white;
       @include border-radius(0);
+      border-bottom: 1px solid #e3d7cb; 
       .x-button-icon{
         background-color: #f4efea;
         height: auto;
@@ -58,8 +106,85 @@
         }
       }
       .x-button-label{
+        font-family: 'ITCErasStd';
+        font-weight: normal;
         text-align: left;
         margin-left: 1em;
+        font-size: 1.25em;
+        text-transform: uppercase;
+      }
+      &.bottom-shadow{
+        &:before{
+          @include insertion(100%, 1em, auto, 0);
+          bottom: 0;
+          @include background-image(linear-gradient(bottom, rgba(230,218,207,0.65) 0, rgba(230,218,207,0) 65%));
+        }
+      }
+      &.top-shadow{
+        &:before{
+          @include insertion(100%, 1em, 0%, 0);
+          @include background-image(linear-gradient(top, rgba(230,218,207,0.65) 0, rgba(230,218,207,0) 65%));
+        }
+      }
+    }
+  }
+  &.find-a-flight {
+    .homeBtnGroup{
+        padding: 1em 1em 0;
+        margin-top: 1em;
+        background-color: white;
+        background-image: none;
+    }
+    .x-scroll-container {
+      background-color: transparent;
+      background-image: none;
+    }
+    .flight-type-cls{
+      .x-button {
+        padding: 0.25em 0.5em 0.5em;
+        height: 2.5em;
+        @include border-radius(0);
+        border: solid 1px rgba(86,86,86,0.0);
+        border-color: rgba(86,86,86,0.2) rgba(124,124,124,0.2) rgba(119,119,119,0.2) rgba(124,124,124,0.2);
+        &.x-button-pressed{
+          @include background-gradient(#f48124, recessed);
+          color: #ffffff;
+          text-shadow: none;          
+        }
+      }
+    }
+    .x-form-fieldset{
+      margin-left: 0;
+      margin-right: 0;
+      &:not(:last-child){
+        margin-bottom: 0;
+      }
+    }
+    .x-form-fieldset-title{
+      margin: 0.5em 1em;
+    }
+    .x-field{
+      margin-bottom: 0.5em;
+      @include border-radius(0);
+      .x-component-outer{
+        border: 1px solid #ccc;
+      }
+      .x-form-label{
+        background-image: none;
+        background-color: transparent;
+        sub{
+          display: block;
+          font-size: 0.75em;
+          line-height: 0.75;          
+        }
+      }
+    }
+    .x-button-action {
+      @include border-radius (0);
+      border-width: 0;
+      @include background-gradient(#f48124, bevel);
+      &.x-button-pressing{
+        @include background-gradient(#f48124, recessed);
       }
     }
   }
